@@ -47,6 +47,7 @@ fi
 DEFAULT_DOTFILES_BRANCH="master"
 DEFAULT_NODEJS_VERSION="12.18.3"
 DEFAULT_RUBY_VERSION="2.7.1"
+export ASDF_NODEJS_VERSION=$DEFAULT_NODEJS_VERSION
 
 
 ################################################################################
@@ -139,7 +140,7 @@ fi
 
 bootstrap_echo "Step 1: Installing Laptop script..."
 
-sh "${BOOTSTRAP_DIR}/install/laptop" 2>&1 | tee ~/laptop.log
+sh "${BOOTSTRAP_DIR}/install/laptop" | tee ~/laptop.log
 
 bootstrap_echo "Done!"
 

@@ -162,7 +162,7 @@ brew "zsh"
 # https://github.com/caskroom/homebrew-cask
 cask "font-fira-code-nerd-font"
 cask "alacritty"
-cask "iterm2"
+# cask "iterm2-beta"
 EOF
 
 case "$DEFAULT_SHELL" in
@@ -209,52 +209,52 @@ install_asdf_language() {
   asdf global "$language" "$version"
 }
 
-laptop_echo "Installing Ruby..."
-install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
-laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
-echo "Ruby --> $(command -v ruby)"
-ruby -v
-echo "Gem --> $(command -v gem)"
-gem -v
-gem update --system
-number_of_cores=$(sysctl -n hw.ncpu)
-bundle config --global jobs $((number_of_cores - 1))
+# laptop_echo "Installing Ruby..."
+# install_asdf_language "ruby" "$ASDF_RUBY_VERSION"
+# laptop_echo "Checking which Ruby and Gem installs we are using at this point..."
+# echo "Ruby --> $(command -v ruby)"
+# ruby -v
+# echo "Gem --> $(command -v gem)"
+# gem -v
+# gem update --system
+# number_of_cores=$(sysctl -n hw.ncpu)
+# bundle config --global jobs $((number_of_cores - 1))
 
-laptop_echo "Installing default gems..."
-gem install bundler
-gem install haml_lint
-gem install neovim
-gem install pry
-gem install rubocop
-gem install tmuxinator
-gem install solargraph
+# laptop_echo "Installing default gems..."
+# gem install bundler
+# gem install haml_lint
+# gem install neovim
+# gem install pry
+# gem install rubocop
+# gem install tmuxinator
+# gem install solargraph
 
 laptop_echo "Installing Node..."
 bash "${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring"
-install_asdf_language "nodejs"
+install_asdf_language "nodejs" "$ASDF_NODEJS_VERSION"
 echo "Node --> $(command -v node)"
 node -v
 echo "NPM --> $(command -v npm)"
 npm -v
 
-laptop_echo "Installing default npm packages..."
-npm install -g @vue/cli
-npm install -g gulp-cli
-npm install -g http-server
-npm install -g neovim
-npm install -g pug
-npm install -g stylelint
-npm install -g typescript
-npm install -g vue-language-server
+# laptop_echo "Installing default npm packages..."
+# npm install -g @vue/cli
+# npm install -g gulp-cli
+# npm install -g http-server
+# npm install -g neovim
+# npm install -g pug
+# npm install -g stylelint
+# npm install -g typescript
+# npm install -g vue-language-server
 
 laptop_echo "Installing Python support for Neovim..."
 echo "Python 3 --> $(command -v python3)"
 python3 --version
 echo "Python 2 --> $(command -v python)"
 python --version
-sudo easy_install pip
+# sudo easy_install pip
 python3 -m pip install --user --upgrade pynvim
-python2 -m pip install --user --upgrade pynvim
+# python2 -m pip install --user --upgrade pynvim
 
 if [ ! -d "${HOME}/.yarn" ]; then
   laptop_echo "Installing Yarn..."
